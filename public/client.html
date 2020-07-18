@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Thread-SSE Client</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 
+      Loading Thread-SSE client library
+      
+      /js/tsse.js is a default client library and 
+      /js/custom-tsse.js is a custom client JavaScript file
+  -->
+  <script src="/js/tsse.js"></script>
+  <script src="/js/custom-tsse.js"></script>
+  
+  <style>
+    body {
+      padding: 25px;
+    }
+    h2 {
+      margin: 30px;
+    }
+    .dfpos {
+      margin: 25px;
+    }
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .trans-size {
+      transform: scale(0.5);
+    }
+  </style>
+</head>
+
+<body>
+	<img id="logo" class="logo" src="https://www.w3plan.net/images/tsse-logo-200x175.jpg" class="dfpos" alt="Logo">
+  <!--img id="logo" class="logo" src="/img/tsse-logo-200x175.jpg" class="dfpos" alt="Logo"-->
+  
+	<h2>Thread-SSE Client</h2>
+	
+  <p><button id="mybtn" onclick="sendData()">Sending data to group members</button></p>
+  
+	<p id="result"></p>
+</body>
+</html>

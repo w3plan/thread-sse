@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Thread-SSE Unit testing</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+  <!-- 
+      Loading Thread-SSE client library
+  -->
+  <script src="/js/tsse.js"></script>
+
+  <style>
+    body {
+      padding: 25px;
+    }
+    .testinfo {
+      padding: 25px;
+    }
+  </style>
+</head>
+
+<body>
+  <img id="logo" src="https://www.w3plan.net/images/tsse-logo-200x175.jpg" class="dfpos" alt="Logo">
+  
+  <h2>Thread-SSE Unit testing</h2>
+
+  <p>To see the messages on the browser console if the testing was failed.</p>
+  
+  <div id="result" class="testinfo"></div>
+  
+  <script>    
+    function tsseAction(id, dt, bulk, tag) {
+      // starts testing
+      if (id === '1000') {
+        test_equal(bulk, "She sells sea shells by the sea shore.\nThe shells she sells are surely seashells.\nSo if she sells shells on the seashore,\nI'm sure she sells seashore shells", id);
+      } else if ( id === '1002') {
+        test_equal(bulk, "A non-empty string", id);
+      } else if ( id === '1004') {
+        test_equal(bulk, "", id);
+      } else if ( id === '1006') {
+        test_equal(bulk, "100.25", id);
+      } else if ( id === '1008') {
+        test_equal(bulk, "15", id);
+      } else if ( id === '1010') {
+        test_equal(bulk, "5.27", id);
+      } else if ( id === '1012') {
+        test_equal(bulk, "3/5", id);
+      } else if ( id === '1014') {
+        test_equal(bulk, "0x53656C66204465736372697074696F6E204A534F4E20536368656D61", id);
+      } else if ( id === '1016') {
+        test_equal(bulk, "0123 0145 0154 0146 040", id);
+      } else if ( id === '1018') {
+        test_equal(bulk, "010011110110111000101101011011100110111101110100011010010110001101100101", id);
+      } else if ( id === '1020') {
+        test_equal(bulk, "https://avatars2.githubusercontent.com/u/18145628?s=400&u=d9b9f7b81ba63e045478001da75f576927bfaf23&v=4", id);
+      } else if ( id === '1022') {
+        test_equal(bulk, "/u/18145628?s=400&u=d9b9f7b81ba63e045478001da75f576927bfaf23&v=4", id);
+      } else if ( id === '1024') {
+        test_equal(bulk, "https", id);
+      } else if ( id === '1026') {
+        test_equal(bulk, "richard:psword", id);
+      } else if ( id === '1028') {
+        test_equal(bulk, "en.wikipedia.org", id);
+      } else if ( id === '1030') {
+        test_equal(bulk, "91.198.174.192", id);
+      } else if ( id === '1032') {
+        test_equal(bulk, "2001:db8:85a3:8d3:1319:8a2e:370:7348", id);
+      } else if ( id === '1034') {
+        test_equal(bulk, "300", id);
+      } else if ( id === '1036') {
+        test_equal(bulk, "../js/tsse.js", id);
+      } else if ( id === '1038') {
+        test_equal(bulk, "?s=400&u=d9b9f7b81ba63e045478001da75f576927bfaf23&v=4", id);
+      } else if ( id === '1040') {
+        test_equal(bulk, "#pt001", id);
+      } else if ( id === '1042') {
+        test_equal(bulk, "jack.ban@example.com", id);
+      } else if ( id === '1044') {
+        test_equal(bulk, "jack.ban", id);
+      } else if ( id === '1050') {
+        test_equal(bulk, "en", id);
+      } else if ( id === '1052') {
+        test_equal(bulk, "ca", id);
+      } else if ( id === '1054') {
+        test_equal(bulk, "9624aeef-afac-43b7-aae9-f5278da52d17", id);
+      } else if ( id === '1056') {
+        test_equal(bulk, "83 101 108 102 32 68 101 115 99 114 105 112 116 105 111 110 32 74 83 79 78 32 83 99 104 101 109 97", id);
+      } else if ( id === '1060') {
+        test_equal(bulk, "Self%20Description%20JSON%20Schema", id);
+      } else if ( id === '1070') {
+        test_equal(bulk, "2020-06-19T21:58:14.963Z", id);
+      } else if ( id === '1072') {
+        test_equal(bulk, "2020-06-19", id);
+      } else if ( id === '1074') {
+        test_equal(bulk, "21:58:14", id);
+      } else if ( id === '1076') {
+        test_equal(bulk, "2020", id);
+      } else if ( id === '1078') {
+        test_equal(bulk, "06", id);
+      } else if ( id === '1080') {
+        test_equal(bulk, "19", id);
+      } else if ( id === '1082') {
+        test_equal(bulk, "21", id);
+      } else if ( id === '1084') {
+        test_equal(bulk, "58", id);
+      } else if ( id === '1086') {
+        test_equal(bulk, "14.963", id);
+      } else if ( id === '1088') {
+        test_equal(bulk, "3500", id);
+      } else if ( id === '1090') {
+        test_equal(bulk, "p{font-family:verdana; font-size:18px;}", id);
+      } else if ( id === '1092') {
+        test_equal(bulk, ".spacious", id);
+      } else if ( id === '1094') {
+        test_equal(bulk, "{color: red; text-align: center;}", id);
+      } else if ( id === '1096') {
+        test_equal(bulk, "rgb(255,69,0)", id);
+      } else if ( id === '1200') {
+        test_equal(bulk, 12.56, id);
+      } else if ( id === '1202') {
+        test_equal(bulk, 25, id);
+      } else if ( id === '1204') {
+        test_equal(bulk, -5.28, id);
+      } else if ( id === '1206') {
+        test_equal(bulk, 37.29, id);
+      } else if ( id === '1208') {
+        test_equal(bulk, 1.26, id);
+      } else if ( id === '1210') {
+        test_equal(bulk, -2.35, id);
+      } else if ( id === '1212') {
+        test_equal(bulk, 52, id);
+      } else if ( id === '1214') {
+        test_equal(bulk, 3, id);
+      } else if ( id === '1216') {
+        test_equal(bulk, -9, id);
+      } else if ( id === '1218') {
+        test_equal(bulk, 0, id);
+      } else if ( id === '1300') {
+        test_equal(bulk, true, id);
+      } else if ( id === '1302') {
+        test_equal(bulk, false, id);
+      } else if ( id === '1350') {
+        test_equal(bulk, null, id);
+      } else if ( id === '3000') {
+        test_deep_equal(bulk, [-6.67, "x", null, "y", 100, true, [], {}, "b"], tag, 'array', id);
+      } else if ( id === '3002') {
+        test_deep_equal(bulk, ["a", "b", "5.1", "x", "-10"], tag, 'array', id);
+      } else if ( id === '3004') {
+        test_deep_equal(bulk, [2.34, 5, -6.67, 10.28], tag, 'array', id);
+      } else if ( id === '3006') {
+        test_deep_equal(bulk, [8, 4, 3, 2, 10, 15], tag, 'array', id);
+      } else if ( id === '3008') {
+        test_deep_equal(bulk, [6, 8, 10, 12, 14, 16, 18, 20], tag, 'array', id);
+      } else if ( id === '3010') {
+        test_deep_equal(bulk, [], tag, 'array', id);
+      } else if ( id === '3100') {
+        test_deep_equal(bulk, {"city": "New York", "name": "Jonesy Band", "education": "No College", "age": 16}, tag, 'json', id);
+      } else if ( id === '3110') {
+        test_deep_equal(bulk, {}, tag, 'json', id);
+      } else if ( id === '3200') {
+        test_deep_equal(bulk, "Map { 'a' => -10, 'b' => 5.1 }", tag, 'map', id);
+      } else if ( id === '3400') {
+        test_deep_equal(bulk, "She sells sea shells by the sea shore. The shells she sells are surely seashells.", tag, "normalization", id);
+      } else if ( id === '3430') {
+        test_deep_equal(bulk, "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==", tag, "data url", id);
+      } else if ( id === '3450') {
+        test_deep_equal(bulk, "QVtP2fwKNw59", tag, "simple password", id);
+      } else if ( id === '3460') {
+        test_deep_equal(bulk, "p3P*f$9&=S-rT()", tag, "complicate password", id);
+      } else if ( id === '3500') {
+        test_deep_equal(bulk, "/^((\\(\\d{3}\\) ?)|(\\d{3}-))?\\d{3}-\\d{4}$/", tag, "(647) 823-7580", id);
+      } else if ( id === '3530') {
+        test_deep_equal(bulk, "https%3A%2F%2Favatars2.githubusercontent.com%2Fu%2F18145628%3Fs%3D400%26u%3Dd9b9f7b81ba63e045478001da75f576927bfaf23%26v%3D4", tag, "url encoding", id);
+      } else if ( id === '3550') {
+        test_deep_equal(bulk, "fdd1fc91732d46de9ba3a604c5fdffc7", tag, "md5", id);
+      } else if ( id === '3560') {
+        test_deep_equal(bulk, "de581449385caeecdea8bbc02ce49c4f:f516dfb84b9051ed85b89cdc3a8ab7f5", tag, "md5 salted", id);
+      }
+    }
+    
+    /**
+     * The part of Thread-SSE client
+     * 
+     * Thread-SSE prints log message to the browser console
+     * open the browser console to see it
+     */    
+    tsseConnection( tsseAction );
+        
+    /**
+     * The assert function 1 for Unit Testing
+     *
+     */ 
+    function test_equal(actual, expected, id) {
+      var msg = "Testing the value to id: " + id;
+      if (actual === expected) {
+        msg += ', <b style="color:#55AF55;">Succeeded</b>';
+      } else {
+        msg += ', <b style="color:#ff0000;">Failed</b>';
+      }
+      
+      document.getElementById("result").innerHTML += msg + '<br><br>';
+    }
+    
+    /**
+     * The assert function 2 for Unit Testing
+     *
+     */ 
+    function test_deep_equal(actual1, expected1, actual2, expected2, id) {
+      var msg = "Testing the value to id: " + id;
+      if (deepEqual(actual1, expected1) && actual2 === expected2) {
+        msg += ', <b style="color:#55AF55;">Succeeded</b>';
+      } else {
+        msg += ', <b style="color:#ff0000;">Failed</b>';
+      }
+
+      document.getElementById("result").innerHTML += msg + '<br><br>';
+    }
+
+    function deepEqual(obj1, obj2) {
+      if (obj1 === obj2) {
+        return true;
+      } else if (isObject(obj1) && isObject(obj2)) {
+
+        if (Object.keys(obj1).length !== Object.keys(obj2).length) { 
+          return false; 
+        }
+        
+        for (var prop in obj1) {
+
+          if ( !deepEqual(obj1[prop], obj2[prop]) ) {
+            return false;
+          }
+        }
+        return true;
+      }
+
+      function isObject(obj) {
+
+        if (typeof obj === "object" && obj != null) {
+          return true;
+        }
+        return false;
+      }
+    }
+  </script>
+</body>
+</html>

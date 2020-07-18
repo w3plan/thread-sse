@@ -1,0 +1,59 @@
+{
+  "name": "thread-sse",
+  "version": "1.0.1",
+  "description": "Thread-SSE is a library for Node.js and web browsers to develop security and high-performance SSE (Server-Send-Events) applications.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test",
+    "custom": "custom",
+    "public": "public",
+    "doc": "doc"
+  },
+  "engines": {
+    "node": ">=6.4.0"
+  },
+  "files": [
+    "index.js",
+    "postinstall.js",
+    "cluster-server-http.js",
+    "server-*.js",
+    "lib/*.js",
+    "test/*.js",
+    "custom/*.js",
+    "custom/localhost.*",
+    "public/*.*",
+    "public/js/*.js",
+    "public/img/*.*",
+    "doc/*.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/w3plan/thread-sse.git"
+  },
+  "homepage": "https://github.com/w3plan/thread-sse/",
+  "author": {
+    "name": "Richard Li",
+    "email": "richard.li@w3plan.net"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://www.opensource.org/licenses/mit-license.php"
+  },
+  "dependencies": {},
+  "scripts": {},
+  "bugs": {
+    "url": "https://github.com/w3plan/thread-sse/issues/",
+    "email": "richard.li@w3plan.net"
+  },
+  "keywords": [
+    "sse",
+    "thread",
+    "thread-sse",
+    "tsse",
+    "tsse data",
+    "client action",
+    "group shared",
+    "security"
+  ]
+}
