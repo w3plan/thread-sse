@@ -60,7 +60,7 @@ Thread-SSE sends 7 data types from server to client, they are string, number, bo
 
 Thread-SSE uses the following object to send all data via SSE, Thread-SSE data is converted to a string at the time of sending and parses it back to the object at the time of receiving, Thread-SSE data are bound to Thread-SSE connections, a Thread-SSE connection has its Thread-SSE data.
 
-> **{  id,  dt, bulk, tag }**
+> **{  id,  dt, bulk, tag  }**
 
 Here id is an integer string between '1000' and '9999', dt is the ISO Datetime that the data was created, bulk is the main part of the data, tag is an aid part to the data. 
 
@@ -123,17 +123,13 @@ Thread-SSE uses tsseUserGroup to store user and group data, the tsseUserGroup is
 
 A user group is not a traditional user role, the purpose of a user group is the management of shared Thread-SSE data.
 
-The code of Thread-SSE's access control
+The code of Thread-SSE's access control:
 
 ```javascript
 /**
  * Stores and manages the mapping of Thread-SSE user to data shared group
- *
  */
 const { readTsseUserGroup, writeTsseUserGroup } = require('./dealStorage');
-
-// Reads tsseUserGroup from server disk
-var tsseUserGroup = readTsseUserGroup();
 
 /**
  * The access control for Thread-SSE data 
@@ -144,8 +140,9 @@ var tsseUserGroup = readTsseUserGroup();
  * based on the user management system.
  */
  class AccessControl {  
-  constructor() { 
-    // now it is an empty constructor
+  constructor(groupDataPath = '') { 
+    // Reads userGroup data from the file
+    this.tsseUserGroup = readTsseUserGroup(groupDataPath);
   }
   
   /**
@@ -175,8 +172,8 @@ var tsseUserGroup = readTsseUserGroup();
    */
   getTsseUserGroup(user) {
 
-    if (tsseUserGroup.has(user)) {
-      return tsseUserGroup.get(user);
+    if (this.tsseUserGroup.has(user)) {
+      return this.tsseUserGroup.get(user);
     } else {
       return '';
     }
@@ -211,7 +208,7 @@ var tsseUserGroup = readTsseUserGroup();
   getGroupMembersByGroup(groupName) {
     var members = [];
     
-    tsseUserGroup.forEach(function(val, key) {
+    this.tsseUserGroup.forEach(function(val, key) {
 
       if (val === groupName) {
         members.push(key);
@@ -232,7 +229,7 @@ var tsseUserGroup = readTsseUserGroup();
    * @param {string} group - The name of user group
    */
   addTsseUserGroup(user, group) {
-    tsseUserGroup.set(user, group);
+    this.tsseUserGroup.set(user, group);
   }
   
   /**
@@ -243,17 +240,17 @@ var tsseUserGroup = readTsseUserGroup();
    * @param {string} group - A group name
    */
   removeTsseUserGroup(user) {
-    return tsseUserGroup.delete(user);
+    return this.tsseUserGroup.delete(user);
   }
   
   /**
-   * Avoids user group data lost, saving tsseUserGroup to server disk
+   * Avoids user group data lost, saving this.tsseUserGroup to server disk
    * before Thread-SSE server closed
    * 
    * @return {boolean}  true  Saving data succeeds, otherwise false 
    */
   saveUserGroup() {
-    return writeTsseUserGroup(tsseUserGroup); 
+    return writeTsseUserGroup(this.tsseUserGroup); 
   }
 }
 ```
