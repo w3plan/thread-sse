@@ -114,18 +114,23 @@ Starts demo Thread-SSE server then access the application from http://<span></sp
 ------------
 
 1. Develops the access control to Thread-SSE data
+
 Overrides methods of AccessControl class from ./custom/access-control.js, managing users and user group with the authentication used by your project.
 
 2. Creates custom validation
+
 Creates custom validation for server-side data sending from ./custom/validation.js and the data receiving of the web browsers from ./js/custom-tsse.js if you defined custom data to your project.
 
 3. Writes client actions 
+
 Writes your client actions in the function tsseAction(id, dt, bulk, tag) from ./js/custom-tsse.js, the arguments of tsseAction are data sent by Thread-SSE server.
 
 4. Sends shared data
+
 Sends shared data with sendSharedTsseData and assigns it as a browser event handler in ./js/custom-tsse.js
 
 5. Updates SSL/TLS certificate and private key files
+
 Updates SSL/TLS certificate and private key files in ./custom folder for the product of your project.
 
 
