@@ -58,13 +58,13 @@ setTsseConnection(request, response);
 // Starts Thread-SSE server for the specific client
 tsseServer(tsseServicePath, response);
 
-// Assigns a Thread-SSE data to a server event
+// Sends a Thread-SSE data
 updateTsseData(tsseServicePath, tsseUser, "1000", "Sending Thread SSE Data");     
 
-// Assigns a custom Thread-SSE data to a server event
+// Sends a custom Thread-SSE data
 updateTsseData(tsseServicePath, tsseUser, "4050", "Joanne Whalley", "(647) 823-7580");
 
-// Sends Thread-SSE data to members of the group
+// Sends shared Thread-SSE data to members of the group
 updateGroupTsseData(request, response, members);
 ```
 
@@ -113,23 +113,23 @@ Starts demo Thread-SSE server then access the application from http://<span></sp
 ### Developing Thread-SSE application
 ------------
 
-1. Develops the access control to Thread-SSE data
+**Develops the access control to Thread-SSE data**
 
 Overrides methods of AccessControl class from ./custom/access-control.js, managing users and user group with the authentication used by your project.
 
-2. Creates custom validation
+**Creates custom validation**
 
 Creates custom validation for server-side data sending from ./custom/validation.js and the data receiving of the web browsers from ./js/custom-tsse.js if you defined custom data to your project.
 
-3. Writes client actions 
+**Writes client actions**
 
 Writes your client actions in the function tsseAction(id, dt, bulk, tag) from ./js/custom-tsse.js, the arguments of tsseAction are data sent by Thread-SSE server.
 
-4. Sends shared data
+**Sends shared data**
 
 Sends shared data with sendSharedTsseData and assigns it as a browser event handler in ./js/custom-tsse.js
 
-5. Updates SSL/TLS certificate and private key files
+**Updates SSL/TLS certificate and private key files**
 
 Updates SSL/TLS certificate and private key files in ./custom folder for the product of your project.
 
@@ -147,6 +147,6 @@ MIT
 
 
 ### Keywords
-------------
+-----------
 
 sse, thread, thread-sse, tsse, tsse data, client action, group shared, security

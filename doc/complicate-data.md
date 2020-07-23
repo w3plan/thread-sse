@@ -35,4 +35,4 @@
 
 System automatically fills the value of tag for data id between 3000 and 3510, don't need to assign tag argument at updateTsseData for data id between 3000 and 3510.
 
-[**Go to Thread-SSE documentation**](./document.md "Thread-SSE documentation")
+[**⛪ Go to Thread-SSE documentation**](./document.md "Thread-SSE documentation")

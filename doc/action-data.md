@@ -61,4 +61,4 @@ Developers can create client actions for the data id with one of "8300", "8320" 
 | 8430, 8440 | "https://www.w3schools.com/action_page.php" | "fname=jack&lname=ban" |
 
 
-[**Go to Thread-SSE documentation**](./document.md "Thread-SSE documentation")
+[**⛪ Go to Thread-SSE documentation**](./document.md "Thread-SSE documentation")

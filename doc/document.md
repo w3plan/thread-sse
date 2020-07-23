@@ -1,3 +1,8 @@
+<p align="center">
+  <img width="200" height="175" src="https://www.w3plan.net/images/tsse-logo-200x175.jpg">
+</p>
+
+
 ### Table of document contents
 ------------
 
@@ -56,7 +61,7 @@ Thread-SSE allows developers to restrict Thread-SSE connections by login status 
 
 ### Thread-SSE data
 ------------
-Thread-SSE sends 7 data types from server to client, they are string, number, boolean, null, array, JSON object, others, the first 6 types are SON data types, they are complete same to both Node.js server and web browser, others type includes undefined, BigInt, Date, Map, Set, Symbol, Window, Document and more, it would be a serialized string received by Thread-SSE client, there no way to parse it back to the original object.
+Thread-SSE sends 7 data types from server to client, they are string, number, boolean, null, array, JSON object, others, the first 6 types are SON data types, they are complete same to both Node.js server and web browser, others type includes undefined, BigInt, Date, Map, Set, Symbol, Window, Document and more, it would be a serialized string received by Thread-SSE client, there is no way to parse it back to the original object.
 
 Thread-SSE uses the following object to send all data via SSE, Thread-SSE data is converted to a string at the time of sending and parses it back to the object at the time of receiving, Thread-SSE data are bound to Thread-SSE connections, a Thread-SSE connection has its Thread-SSE data.
 
@@ -124,6 +129,9 @@ Thread-SSE uses tsseUserGroup to store user and group data, the tsseUserGroup is
 A user group is not a traditional user role, the purpose of a user group is the management of shared Thread-SSE data.
 
 The code of Thread-SSE's access control:
+
+<details>
+<summary><i> Click to expand the code </i></summary>
 
 ```javascript
 /**
@@ -200,7 +208,7 @@ const { readTsseUserGroup, writeTsseUserGroup } = require('./dealStorage');
   }
   
   /**
-   * Gets all members of a assigned user group
+   * Gets all members of an assigned user group
    * 
    * @param {string} groupName - A group name
    * @return {array}  An array of members
@@ -254,6 +262,8 @@ const { readTsseUserGroup, writeTsseUserGroup } = require('./dealStorage');
   }
 }
 ```
+</details>
+
 
 **Sends shared data**
 
@@ -291,165 +301,177 @@ The event to trigger the event handler in the page of Thread-SSE client
 ```
 
 
+[**☝ Back to top**](#Table-of-document-contents)
+
+
+
 ### Client APIs
 ------------
 
-**tsseAction(id, dt, bulk, tag)**
+**tsseAction( id, dt, bulk, tag )**
 
-The part of client actions to run actions with Thread-SSE data from server-side.<br>
-To add your action code in the body of tsseAction function. Don't change the name of tsseAction.
+>The part of client actions to run actions with Thread-SSE data from server-side.<br>
+>To add your action code in the body of tsseAction function. Don't change the name of tsseAction.
+>
+>Parameters
+>> {string} id - The id between 1000 and 9999 to the value of tsseData<br>
+>> {string|number|boolean|null|array|json|others} bulk - The item that contains the main content of Thread-SSE data<br>
+>> {string|number|boolean|null|array|json|others} tag - The aid item to Thread-SSE data
 
-Parameters
-> {string} id - The id between 1000 and 9999 to the value of tsseData<br>
-> {string|number|boolean|null|array|json|others} bulk - The item that contains the main content of Thread-SSE data<br>
-> {string|number|boolean|null|array|json|others} tag - The aid item to Thread-SSE data
+**sendSharedTsseData( id, bulk, tag )**
 
-**sendSharedTsseData(id, bulk, tag)**
-
-Sends shared Thread-SSE data to the members of user group.
-
-Parameters
-> {string} id - The id between 1000 and 9999 to the value of tsseData<br>
-> {string|number|boolean|null} bulk - The item that contains the main content of Thread-SSE data<br>
-> {string|number|boolean|null} tag -  The aid item to Thread-SSE data
-
-Return
-> false if sending failed, otherwise true
+>Sends shared Thread-SSE data to the members of user group.
+>
+>Parameters
+>> {string} id - The id between 1000 and 9999 to the value of tsseData<br>
+>> {string|number|boolean|null} bulk - The item that contains the main content of Thread-SSE data<br>
+>> {string|number|boolean|null} tag -  The aid item to Thread-SSE data
+>
+>Return
+>> false if sending failed, otherwise true
 
 **tsseConnection( tsseAction )**
 
-Requests a Thread-SSE server-side connection.
+>Requests a Thread-SSE server-side connection.
+>
+>Parameter
+>> {string} tsseAction  - The function name that runs with Thread-SSE data as arguments
+>
+>Return
+>> false if the request failed
 
-Parameter
-> {string} tsseAction  - The function name that runs with Thread-SSE data as arguments
+**validateTsseData( id, bulk, tag )**
 
-Return
-> false if the request failed
+>Validates the value of tsseData.
+>
+>Parameters
+>> {string} id - The id between 1000 and 9999 to the value of tsseData<br>
+>> {string|number|boolean|null} bulk - The item that contains the main content of Thread-SSE data<br>
+>> {string|number|boolean|null} tag -  The aid item to Thread-SSE data
+>
+>Return
+>> true validation succeeds, otherwise false
 
-**validateTsseData(id, bulk, tag)**
 
-Validates the value of tsseData.
-
-Parameters
-> {string} id - The id between 1000 and 9999 to the value of tsseData<br>
-> {string|number|boolean|null} bulk - The item that contains the main content of Thread-SSE data<br>
-> {string|number|boolean|null} tag -  The aid item to Thread-SSE data
-
-Return
-> true validation succeeds, otherwise false
+[**☝ Back to top**](#Table-of-document-contents)
 
 
 ### Server APIs
 ------------
 **getConnectionPath()**
 
-Gets the path of Thread-SSE connection.
-
-Return
-> {string} A path
+>Gets the path of Thread-SSE connection.
+>
+>Return
+>> {string} A path
 
 **getsharedDataPath()**
 
-Gets the working path of shared data
+>Gets the working path of shared data
+>
+>Return
+>> {string} A path
 
-Return
-> {string} A path
+**getTsseServicePath( request )**
 
-**getTsseServicePath(request)**
-
-Gets the service path from the request object.
-
-Parameters
-> {object} request - A request object
-
-Return
-> {string} A path if the client id is existing, otherwise an empty string
+>Gets the service path from the request object.
+>
+>Parameters
+>> {object} request - A request object
+>
+>Return
+>> {string} A path if the client id is existing, otherwise an empty string
 
 **getTsseServicePrefix()**
 
-Gets the path prefix of Thread-SSE service.
+>Gets the path prefix of Thread-SSE service.
+>
+>Return
+>> {string} A path prefix of Thread-SSE service
 
-Return
-> {string} A path prefix of Thread-SSE service
+**libStyleGraph( request, response, filePath )**
 
-**libStyleGraph(request, response, filePath)**
+> Responds Thread-SSE client library, style and graphs.
+>
+> Parameters
+>> {object} request - A request object<br>
+>> {object} response - A response object<br>
+>> {string} filePath - The path of Thread-SSE client library, style and graph files
+>
+> Return
+>> {boolean} true if succeed, otherwise false
 
-Parameters
-> {object} request - A request object<br>
-> {object} response - A response object<br>
-> {string} filePath - The path of Thread-SSE client library, style and graph files
+**responseClient( request, response, content, isHttps = false )**
 
-Return
-> {boolean} true if succeed, otherwise false
+> Responds Thread-SSE client to the request.
+>
+> Parameters
+>> {object} request - A request object<br>
+>> {object} response - A response object<br>
+>> {string} content - The content of Thread-SSE client file<br>
+>> {boolean=} isHttps - Set secure flag to cookie if the protocol is HTTPS or HTTP/2
+>
+> Return
+>> {boolean}   true to send succeeded, otherwise false
 
-**responseClient(request, response, content, isHttps = false)**
+**setTsseConnection( request, response )**
 
-Responds Thread-SSE client to the request.
+> Prepares the Thread-SSE connection or extends another 25 minutes to the connection.
+> 
+>Parameters
+>> {object} request - A request object
+>
+>Return
+>> {object} response - A response object
 
-Parameters
-> {object} request - A request object<br>
-> {object} response - A response object<br>
-> {string} content - The content of Thread-SSE client file<br>
-> {boolean=} isHttps - Set secure flag to cookie if the protocol is HTTPS or HTTP/2
+**tsseServer( servicePath, response, isHttp2 = false )**
 
-Return
-> {boolean}   true to send succeeded, otherwise false
+> Provides Thread-SSE service to the coming connections.
+>
+> Parameters
+>> {string} servicePath - The service path of Thread-SSE connection<br>
+>> {object} response - A response object<br>
+>> {boolean} isHttp2 - false if the protocol is HTTP/2, otherwise true
+>
+> Return
+>> {boolean} false if failed
 
-**setTsseConnection(request, response)**
+**updateGroupTsseData( request, response, users )**
 
-Prepares the Thread-SSE connection or extends another 25 minutes to the connection.
+> Updates the data that was sent by the Thread-SSE client to all members of the user group.<br>
+> Thread-SSE uses this function sending updated data to members of the group.
+>
+>Parameters
+>> {object} request - A request object<br>
+>> {object} response - A response object<br>
+>> {array} users - An array of user group that shares the simple data
+>
+>Return
+>> {boolean} false if data isn't right
 
-Parameters
-> {object} request - A request object
+**updateTsseData( servicePath, user, id, bulk = '', tag = '' )**
 
-Return
-> {object} response - A response object
+> Updates Thread-SSE data to the specific Thread-SSE connection user.<br>
+> Thread-SSE uses this function sending updated data to the client 
+> 
+> Parameters
+>> {string} servicePath - The service path of Thread-SSE connection<br>
+>> {string} user - The login name that is using the Thread-SSE connection, an empty string to all the visitors<br>
+>> {string} id - The id between 1000 and 9999 to the value of tsseData<br>
+>> {string|number|boolean|null|array|json|others} bulk - The item that contains the main content of Thread-SSE data<br>
+>> {string|number|boolean|null|array|json|others} tag - The aid item to Thread-SSE data
+>
+> Return
+>> {boolean} false if failed, otherwise true
 
-**tsseServer(servicePath, response, isHttp2 = false)**
+**validateTsseData( id, bulk = '', tag = '' )**
 
-Provides Thread-SSE service to the coming connections.
-
-Parameters
-> {string} servicePath - The service path of Thread-SSE connection<br>
-> {object} response - A response object<br>
-> {boolean} isHttp2 - false if the protocol is HTTP/2, otherwise true
-
-Return
-> {boolean} false if failed
-
-**updateGroupTsseData(request, response, users)**
-
-Updates the data that was sent by the Thread-SSE client to all members of the user group.<br>
-Thread-SSE uses this function sending updated data to members of the group.
-
-Parameters
-> {object} request - A request object<br>
-> {object} response - A response object<br>
-> {array} users - An array of user group that shares the single value
-
-Return
-> {boolean} false if data isn't right
-
-**updateTsseData(servicePath, user, id, bulk = '', tag = '')**
-
-Updates Thread-SSE data to the specific Thread-SSE connection user.<br>
-Thread-SSE uses this function sending updated data to the client 
-
-Parameters
-> {string} servicePath - The service path of Thread-SSE connection<br>
-> {string} user - The login name that is using the Thread-SSE connection, an empty string to all the visitors<br>
-> {string} id - The id between 1000 and 9999 to the value of tsseData<br>
-> {string|number|boolean|null|array|json|others} bulk - The item that contains the main content of Thread-SSE data<br>
-> {string|number|boolean|null|array|json|others} tag - The aid item to Thread-SSE data
-
-Return
-> {boolean} false if failed, otherwise true
-
-**validateTsseData(id, bulk = '', tag = '')**
-
-The same with client API validateTsseData(id, bulk, tag), but bulk and tag include more data types than bulk and tag to client API.
+>The same with client API validateTsseData(id, bulk, tag), but bulk and tag include more data types than bulk and tag to client API.
 
 You can use and override methods of AccessControl class in ./custom/access-control.js, here no further description to the methods of AccessControl class, please read [Sharing Thread-SSE data](#Sharing-Thread-SSE-data) for the details
+
+
+[**☝ Back to top**](#Table-of-document-contents)
 
 
 ### Developing Thread-SSE application
@@ -589,4 +611,4 @@ Starts demo Thread-SSE server then access the application from http://<span></sp
 - If your web server isn't node.js, you may create your Thread-SSE server-side with the reference of [Thread-SSE project]( https://github.com/w3plan/thread-sse/). The license of Thread-SSE is MIT.
 
 
-[**Back to top**](#Table-of-document-contents)
+[**☝ Back to top**](#Table-of-document-contents)

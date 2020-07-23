@@ -4,7 +4,7 @@ const path = require('path');
 const targetDir = process.cwd();
 
 if (targetDir !== __dirname) {
-	
+  
   var publicPath = path.join(targetDir, 'public');
   var publicJsPath = path.join(publicPath, 'js');
   var publicImgPath = path.join(publicPath, 'img');
@@ -17,10 +17,10 @@ if (targetDir !== __dirname) {
     return fs.createReadStream(srcFull).pipe(fs.createWriteStream(destFull));
   }
   
-	if ( !fs.existsSync(publicPath) || !fs.statSync(publicPath).isDirectory() ) {
-		fs.mkdirSync(publicPath);
-		fs.mkdirSync(publicJsPath);
-		fs.mkdirSync(publicImgPath);
+  if ( !fs.existsSync(publicPath) || !fs.statSync(publicPath).isDirectory() ) {
+    fs.mkdirSync(publicPath);
+    fs.mkdirSync(publicJsPath);
+    fs.mkdirSync(publicImgPath);
     
     tsseCopy('/public/client.html', publicPath, 'client.html');
     tsseCopy('/public/favicon.ico', publicPath, 'favicon.ico');
@@ -33,25 +33,25 @@ if (targetDir !== __dirname) {
     tsseCopy('/public/img/tsse-logo-24x24.png', publicImgPath, 'tsse-logo-24x24.png');
     
   } else if ( !fs.existsSync(publicJsPath) || !fs.statSync(publicJsPath).isDirectory() ) {
-  	fs.mkdirSync(publicJsPath);
+    fs.mkdirSync(publicJsPath);
     
     tsseCopy('/public/js/tsse.js', publicJsPath, 'tsse.js');
     tsseCopy('/public/js/custom-tsse.js', publicJsPath, 'custom-tsse.js');
     
   } else if ( !fs.existsSync(publicImgPath) || !fs.statSync(publicImgPath).isDirectory() ) {
-  	fs.mkdirSync(publicImgPath);
+    fs.mkdirSync(publicImgPath);
     
     tsseCopy('/public/img/tsse-logo-200x175.jpg', publicImgPath, 'tsse-logo-200x175.jpg');
     tsseCopy('/public/img/tsse-logo-24x24.png', publicImgPath, 'tsse-logo-24x24.png');
   }
   
   if ( !fs.existsSync(customPath) || !fs.statSync(customPath).isDirectory() ) {
-  	fs.mkdirSync(customPath);
+    fs.mkdirSync(customPath);
     
     tsseCopy('/custom/validation.js', customPath, 'validation.js');
     tsseCopy('/custom/access-control.js', customPath, 'access-control.js');
-  	tsseCopy('/custom/localhost.key', customPath, 'localhost.key');
-  	tsseCopy('/custom/localhost.cert', customPath, 'localhost.cert');
+    tsseCopy('/custom/localhost.key', customPath, 'localhost.key');
+    tsseCopy('/custom/localhost.cert', customPath, 'localhost.cert');
   }
   
   if ( !fs.existsSync(path.join(targetDir, '/server-http.js')) ) {
@@ -75,7 +75,7 @@ if (targetDir !== __dirname) {
   }
 
   if ( !fs.existsSync(path.join(targetDir, '/server-express.js')) ) {
-    tsseCopy('/server-express-https.js', targetDir, 'server-express-https.js');												
+    tsseCopy('/server-express-https.js', targetDir, 'server-express-https.js');                        
   }
   
   console.log('\nSet up Thread-SSE application environment to ' + targetDir + ' completed.'); 

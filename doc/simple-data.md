@@ -60,4 +60,4 @@
 | 1350 | null | null |
 
 
-[**Go to Thread-SSE documentation**](./document.md "Thread-SSE documentation")
+[**⛪ Go to Thread-SSE documentation**](./document.md "Thread-SSE documentation")
